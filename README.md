@@ -126,19 +126,29 @@ This opens the Wireshark tool. After it has opened press that blue button to sta
   ```
   nmap 192.168.191.6
   ```
-  As we can see the port 80 is open.
+  As we can see port 80 is open.
 
-- As this is a HTTP port. Let's attack port 80 by flooding SYN packets. This means we send huge amount of SYN packets to Victim but not complete the three way handshake by not not sending ACK packets. This will use Victim's resources and eventually overwhelm it. The command is given below.
+- As this is an HTTP port. Let's attack port 80 by flooding SYN packets. This means we send a huge amount of SYN packets to the Victim but do not complete the three-way handshake by not sending ACK packets. This will use the Victim's resources and eventually overwhelm it. The command is given below.
 ```
 hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.191.6
 ```
 > We are using hping3 tool to send 15000 SYN packets of 120 bytes each(-c 15000 -d 120 -S -w 64) to HTTP web server(-p 80) as fast as possible(--flood) from random spoofed IP addresses hiding our real Attack IP address(--rand-source) to Victim(192.168.191.6).
 
-This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it to analyse later.
+This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it for analysis later.
 
-- This way we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl = Z` on our kwyboard.
+- This way we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl = Z` on our keyboard.
 
 # Analysing using Wireshark.  
+We go to our Victim machine and open Wireshark. After that, we import the saved network traffic capture and open it. Now the network traffic that was captured during the attack is displayed.
+
+
+We can see above that there is a lot of incoming TCP traffic. As this is an unusual activity we want to study it. To filter the SYN packets without any acknowledgement among all the captures we use the following filter.
+`tcp.flags.syn == 1 and tcp.flags.ack == 0
+`
+We can see a lot of SYN packets are coming in a very tiny time frame. Although they are coming from different IP sources, the destination port is 80 for all packets. They are also of identical length of 120 and window size 64. This clearly indicates a TCP SYN flood attack
+
+
+
      
    
 
