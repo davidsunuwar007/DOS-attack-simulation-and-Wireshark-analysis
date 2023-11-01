@@ -1,6 +1,6 @@
 # Overview
 
-This is a home-based project. Here, I have simulated a simple SYN flood DOS (Denial of Service) attack and analysed it using Wireshark. The main purpose of this project is to learn how DOS attack works and to gain familiarity with Wireshark. I have created two virtual machines in Oracle VirtualBox. Ubuntu is the attacker’s machine and Kali Linux is the victim’s machine. Network packets are captured in the victim’s device with Wireshark.
+This is a home-based project. Here, I have simulated a simple TCP SYN flood DOS (Denial of Service) attack and analysed it using Wireshark. In a SYN flood attack, an attacker exploits the three-way handshake protocol used by TCP by sending an overwhelming number of SYN requests to the server. Meanwhile, Wireshark is an open-source network protocol analyser tool which helps professionals to capture, inspect and analyse real-time network traffic. The main purpose of this project is to learn how DOS attack works and to gain familiarity with Wireshark. I have created two virtual machines in Oracle VirtualBox. Ubuntu is the attacker’s machine and Kali Linux is the victim’s machine. Network packets are captured in the victim’s device with Wireshark.
 
 # Technologies Used
 
@@ -102,7 +102,7 @@ The server is working.
   ```
   ifconfig
   ```
-As we can see the Attackers IP address is ``xxxxxxxxxxxxxx`` and the Victims IP address is ``xxxxxxxxx``, we can note it somewhere. We need it in further steps.
+As we can see the Attacker's IP address is ``192.168.191.6`` and the Victim's IP address is ``192.168.191.5``, we can note it somewhere. We need it in further steps.
   > We see the IP address for Victim has changed. This is because we changed our Network adapter.
 
 - Now, let's ping each other to see if the connection has been established. The command is given below.
@@ -120,7 +120,7 @@ As we can see the connection has established. Let's end the ping request with ``
 ```
 wireshark
 ```
-This opens the Wireshark tool. After it has opened press that blue button to start capturing the file.
+This opens the Wireshark tool. After it's opened, press that blue button to start capturing the file.
 
 - Now, going back to the Attacker machine. Let's scan the Victim machine to see the open ports. The command is
   ```
@@ -136,7 +136,7 @@ hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.191.6
 
 This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it for analysis later.
 
-- This way we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl = Z` on our keyboard.
+- This way we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl + Z` on our keyboard.
 
 # Analysing using Wireshark.  
 We go to our Victim machine and open Wireshark. After that, we import the saved network traffic capture and open it. Now the network traffic that was captured during the attack is displayed.
@@ -146,6 +146,8 @@ We can see above that there is a lot of incoming TCP traffic. As this is an unus
 `tcp.flags.syn == 1 and tcp.flags.ack == 0
 `
 We can see a lot of SYN packets are coming in a very tiny time frame. Although they are coming from different IP sources, the destination port is 80 for all packets. They are also of identical length of 120 and window size 64. This clearly indicates a TCP SYN flood attack
+
+
 
 
 
