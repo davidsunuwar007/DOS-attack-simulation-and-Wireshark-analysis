@@ -22,9 +22,9 @@ Now, we set up the virtual machines. We do that by downloading the ISO image fil
 chose the Linux 64-bit version.
 
 * Second, we set the minimum RAM size of 2 GB, a Hard disk of 25 GB and 2 CPU processors. This is to make sure that the machine runs smoothly.
-* 
+  
 * Third, we click the start button and start the operating system installation process. This could take several minutes. During the process, we set our username, password and other requirements.
-* 
+  
 * Fourth, we do the same steps for the victim’s machine. We name it Victim, choose the Kali Linux ISO file and select the Debian 64-bit version.
 Your display should look similar to this.
 
@@ -49,11 +49,11 @@ Your display should look similar to this.
    ```
    hping3 –version
    ```
-* We also install Nmap. It is a network scanning tool. It helps users to see the open ports of a targeted machine. It can be installed with this command.
+* We also install Nmap. It is a network scanning tool. It helps users see the open ports of a targeted machine. It can be installed with this command.
    ```
    sudo apt-get install nmap
    ```
-  Just like for hping3, we can check if nmap has been installed with this command.
+  Just like for hping3, we can check if Nmap has been installed with this command.
    ```
    nmap --version
    ```
@@ -61,7 +61,7 @@ Your display should look similar to this.
 
 ### Victim (Kali Linux) 
 
-- We go to terminal by pressing the terminal icon in top left corner. 
+- We go to the terminal by pressing the terminal icon in the top left corner. 
 
 - Just like in Ubuntu we update our system. 
 
@@ -69,23 +69,78 @@ Your display should look similar to this.
   sudo apt-get update
   ```
 
-- Like in Attackers machine we dont need nmap and hping3 tool in Victims device. Instead we need to open our ports and wee need Wireshark to analyse our network traffic. We will host apache server in port 80 and allow attacker to attack through port 80. We install Apache server with this command.
+- Like in the attacker's machine we don't need Nmap and hping3 tool in the victim's device. Instead, we need to open our ports and we need Wireshark to analyse our network traffic. We will host the Apache server in port 80 and allow attackers to attack through port 80. We installed the Apache server with this command.
 ```
 sudo apt install apache2
 ```
-Once its been installed you can start it with this command.
+Once it's been installed you can start it with this command.
 ```
 sudo systemctl start apache2
 ```
-This hosts the apache server in port 80. We can visit the server by typing our ip address in the web browser.
+This hosts the Apache server in port 80. We can visit the server by typing our IP address into the web browser.
 
 
-- We can see ip address of our machine with this command.
+- We can see the IP address of our machine with this command.
 ```
 ifconfig
 ```
 
-As we can see, our ip address is xxxxxxxxxxxxxx.Let's put it in browser.
+As we can see, our IP address is xxxxxxxxxxxxxx. Let's put it in the browser.
+The server is working.
+
+- Wireshark comes auto-installed in Kali Linux so we don't have to install it.
+
+- Since everything we need has been installed, let's turn off our machines and go to our VirtualBox. Going to Settings and clicking the Network button, we should change our Network adapter to a Host-only Adapter. This isolates our virtual machines from the internet and makes it safe to simulate an attack.
+
+# Attack and Capture
+- Let's open our virtual machines, go to the terminal and note our IP addresses. The command is given below.
+  > For Attacker(Ubuntu)
+   ```
+   ip addr
+   ```
+> For Victim(Kali Linux)
+  ```
+  ifconfig
+  ```
+As we can see the Attackers IP address is ``xxxxxxxxxxxxxx`` and the Victims IP address is ``xxxxxxxxx``, we can note it somewhere. We need it in further steps.
+  > We see the IP address for Victim has changed. This is because we changed our Network adapter.
+
+- Now, let's ping each other to see if the connection has been established. The command is given below.
+> For Attacker
+```
+ping 192.168.191.6
+```
+> For Victim(Kali Linux)
+```
+ping 192.168.191.5
+```
+As we can see the connection has established. Let's end the ping request with ``Ctrl + Z``.
+
+- Next, let's open Wireshark in our Victim machine and start capturing the network traffic. This command is
+```
+wireshark
+```
+This opens the Wireshark tool. After it has opened press that blue button to start capturing the file.
+
+- Now, going back to the Attacker machine. Let's scan the Victim machine to see the open ports. The command is
+  ```
+  nmap 192.168.191.6
+  ```
+  As we can see the port 80 is open.
+
+- As this is a HTTP port. Let's attack port 80 by flooding SYN packets. This means we send huge amount of SYN packets to Victim but not complete the three way handshake by not not sending ACK packets. This will use Victim's resources and eventually overwhelm it. The command is given below.
+```
+hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.191.6
+```
+> We are using hping3 tool to send 15000 SYN packets of 120 bytes each(-c 15000 -d 120 -S -w 64) to HTTP web server(-p 80) as fast as possible(--flood) from random spoofed IP addresses hiding our real Attack IP address(--rand-source) to Victim(192.168.191.6).
+
+This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it to analyse later.
+
+- This way we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl = Z` on our kwyboard.
+
+# Analysing using Wireshark.  
+     
+   
 
       
 
