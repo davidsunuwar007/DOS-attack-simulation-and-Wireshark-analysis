@@ -161,7 +161,9 @@ This opens the Wireshark tool. After it's opened, press that blue button to star
 ```
 sudo hping3 192.168.191.8 -S -p 80 --rand-source --flood
 ```
-> We are using hping3 tool to send 15000 SYN packets of 120 bytes each(-c 15000 -d 120 -S -w 64) to HTTP web server(-p 80) as fast as possible(--flood) from random spoofed IP addresses hiding our real Attack IP address(--rand-source) to Victim(192.168.191.6).
+> We are using hping3 tool to attack 192.168.191.8 with SYN packets to port 80. The server will receive SYN packets from random spoofed IP addresses, hiding our real IP address.
+
+![Screenshot (203)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/6b9d60f8-576e-4cef-bb08-e527d607d7a4)
 
 This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it for analysis later.
 
@@ -170,12 +172,23 @@ This will slow down the Victim server and eventually freeze or crash the machine
 # Analysing using Wireshark.  
 We went to our victim machine and opened Wireshark. After that, we import the saved network traffic capture and open it. Now, the network traffic that was captured during the attack is displayed.
 
+![Screenshot (204)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/9c9715aa-6f0e-4bb8-b2ab-0ae729f913fa)
 
-We can see above that there is a lot of incoming TCP traffic. As this is an unusual activity, we want to study it. To filter the SYN packets without any acknowledgement among all the captures, we use the following filter.
+We can see above that there is a lot of incoming TCP traffic. As this is an unusual activity, we want to study it. To filter the SYN packets without any acknowledgement among all the captures, we use the following display filter.
+
 `tcp.flags.syn == 1 and tcp.flags.ack == 0
 `
-We can see a lot of SYN packets are coming in a very tiny time frame. Although they come from different IP sources, the destination port is 80 for all packets. They are also of identical length of 120 and window size 64. This clearly indicates a TCP SYN flood attack
 
+![Screenshot (205)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/30f4e5a9-1132-487e-ae78-1f90913b626f)
+
+We can see a lot of SYN packets are coming in a very tiny time frame. Although they come from different IP sources, the destination port is 80 for all packets. They are also of identical length of 0 and window size 512. This clearly indicates a TCP SYN flood attack.
+
+
+We can also use the I/O graph in the statistics section of Wireshark for visual representation.
+
+![Screenshot (207)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/e803c63e-3ec1-40c5-9dbf-b45cd53708d9)
+
+As we can see, the traffic has increased from 0 to over 5000 within a couple of seconds.
 
 
 
