@@ -196,8 +196,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
 
   As we can see, the traffic has increased from 0 to over 5000 packets per second in a very short period of time.
 
-  #Prevention
-  - Firewalls can be used to block malicious requests and rate-limit incoming SYN packets.
+  # Prevention
+  - Firewalls can block malicious requests and rate-limit incoming SYN packets.
   - Installing security patches in the system without delay. This minimizes the vulnerabilities attackers might exploit.
   - Implementing Intrusion Prevention System(IPS) to block realtime attacks.
   - Distributing the incoming traffic evenly among different servers. This implementation is called a load balancer. This prevents the resources from exhaustion due to SYN 
