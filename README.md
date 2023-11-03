@@ -110,8 +110,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
 
 - Since everything we need has been installed, let's turn off our machines and go to our VirtualBox. Going to Settings and clicking the Network button, we should change 
   our Network adapter to a Host-only Adapter for both machines. This isolates our virtual machines from the internet and makes it safe to simulate an attack.
-  ![image7](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/d5921905-30f5-45e9-b4c5-b91c01279fbc)
 
+  ![Screenshot (194)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/f384c171-4901-4164-ba43-df506ed4b16e)
 
 # Attack and Capture
 - Let's open our virtual machines, go to the terminal and note our IP addresses. The command is given below.
@@ -124,7 +124,7 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
    ifconfig
    ```
 
-   ![image8](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/80a4a5e1-1de7-4dd0-ac6f-a8789bc76569)
+   ![Screenshot (195)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/cb47842f-fe76-4f08-ba44-1fd49813d5a4)
 
    As we can see, the Attacker's IP address is ``192.168.191.7``, and the Victim's IP address is ``192.168.191.8``. We can note it somewhere.
    > We see the IP address for Victim has changed. This is because we changed our Network adapter.
@@ -139,8 +139,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
   ping 192.168.191.7
   ```
   As we can see, the connection has been established. Let's end the ping request with ``Ctrl + Z``.
-
-  ![image9](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/96c851ac-abff-46dd-847e-5c009397eca6)
+  
+  ![Screenshot (196)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/7e92aa60-0af4-4dac-a5b3-2a6ccd79e2ea)
 
 - Now, going to the Attacker machine. Let's scan the Victim machine to see the open ports. The command is
   ```
@@ -148,7 +148,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
   ```
   As we can see, port 80 is open.
 
-  ![image10](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/09b23a48-9734-4efc-88e5-85c8ac5d5873)
+  ![Screenshot (199)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/cb266d2b-ec89-455c-8d85-06bd2e78ca9b)
+
   
 - Next, let's open Wireshark in our Victim machine and start capturing the network traffic. This command is
   ```
@@ -156,7 +157,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
   ```
   This opens the Wireshark tool. After it's opened, press that blue button to start capturing the file.
 
-  ![image11](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/922ffac2-156e-4a24-bd6a-0b186a669dc2)
+  
+![Screenshot (198)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/cabc1075-c1a6-4e74-93ef-12c157489795)
 
 - As this is an HTTP port. Let's attack port 80 by flooding SYN packets. This means we send many SYN packets to the Victim but do not complete the three-way handshake by 
   not sending ACK packets. This will use the Victim's resources and eventually overwhelm it. The command is given below.
@@ -166,7 +168,7 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
   > We are using hping3 tool to attack 192.168.191.8 with SYN packets to port 80. The server will receive SYN packets from random spoofed IP addresses, hiding our real IP 
   address.
 
-  ![image12](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/6b9d60f8-576e-4cef-bb08-e527d607d7a4)
+  ![Screenshot (203)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/835e1e84-0c79-49a4-9a76-4ae10800404e)
 
   This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it for analysis 
   later.
