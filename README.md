@@ -141,27 +141,31 @@ As we can see, the connection has been established. Let's end the ping request w
 
 ![Screenshot (196)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/96c851ac-abff-46dd-847e-5c009397eca6)
 
+- Now, going to the Attacker machine. Let's scan the Victim machine to see the open ports. The command is
+  ```
+  nmap 192.168.191.8
+  ```
+  As we can see, port 80 is open.
+
+![Screenshot (199)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/09b23a48-9734-4efc-88e5-85c8ac5d5873)
+  
 - Next, let's open Wireshark in our Victim machine and capture the network traffic. This command is
 ```
 wireshark
 ```
 This opens the Wireshark tool. After it's opened, press that blue button to start capturing the file.
 
-- Now, going back to the Attacker machine. Let's scan the Victim machine to see the open ports. The command is
-  ```
-  nmap 192.168.191.6
-  ```
-  As we can see, port 80 is open.
+![Screenshot (198)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/922ffac2-156e-4a24-bd6a-0b186a669dc2)
 
 - As this is an HTTP port. Let's attack port 80 by flooding SYN packets. This means we send many SYN packets to the Victim but do not complete the three-way handshake by not sending ACK packets. This will use the Victim's resources and eventually overwhelm it. The command is given below.
 ```
-hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.191.6
+sudo hping3 192.168.191.8 -S -p 80 --rand-source --flood
 ```
 > We are using hping3 tool to send 15000 SYN packets of 120 bytes each(-c 15000 -d 120 -S -w 64) to HTTP web server(-p 80) as fast as possible(--flood) from random spoofed IP addresses hiding our real Attack IP address(--rand-source) to Victim(192.168.191.6).
 
 This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it for analysis later.
 
-- This way, we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl + Z` on our keyboard.
+- This way, we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl + C` on our keyboard.
 
 # Analysing using Wireshark.  
 We went to our victim machine and opened Wireshark. After that, we import the saved network traffic capture and open it. Now, the network traffic that was captured during the attack is displayed.
