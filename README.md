@@ -52,8 +52,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
        hping3 –version
         ```
    
-![image2](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/52594fd7-d88a-439b-a59c-1628b5f02c31)
-   
+  ![Screenshot (189)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/77b66be8-3e6e-4229-bc0b-0ffcdbbb6710)
+ 
 * We also install Nmap. It is a network scanning tool. It helps users see the open ports of a targeted machine. It can be installed with this command.
    ```
    sudo apt-get install nmap
@@ -63,9 +63,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
    nmap --version
    ```
   This displays the name and version of the tool.
-
-  ![image3](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/a112214c-9cc6-4453-af68-df5ebb92989f)
-
+  
+  ![Screenshot (190)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/4a5cc4ae-eac9-41a2-82dc-edc5d03d1465)
 
 ### Victim (Kali Linux) 
 
@@ -77,8 +76,9 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
   sudo apt-get update
   ```
 
-- Like in the attacker's machine, we don't need Nmap and hping3 tool in the victim's device. Instead, we need to open our ports, and we need Wireshark to analyse our 
-  network traffic. We will host the Apache server in port 80 and allow attackers to attack through port 80. We installed the Apache server with this command.
+- Like in the attacker's machine, we don't need Nmap and hping3 tool in the victim's device. Instead, we need to open our 
+  ports, and we need Wireshark to analyse our network traffic. We will host the Apache server in port 80 and allow 
+  attackers to attack through port 80. We installed the Apache server with this command.
    ```
    sudo apt install apache2
    ```
@@ -87,22 +87,19 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
    sudo systemctl start apache2
    ```
    This hosts the Apache server in port 80. We can visit the server by typing our IP address into the web browser.
-
-   ![image4](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/2dd410a8-cd1f-4bba-bae6-7a92f070c139)
-
-
+   
+   ![Screenshot (191)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/3718ec0a-b857-42e8-9ca4-38081e89535a)
 
 - We can see our machine's IP address with this command.
   ```
   ifconfig
   ```
 
-  ![image5](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/718f3a36-abb8-485c-a732-050b4232a30e)
+  ![Screenshot (192)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/1d1de6a5-a477-43b6-bd36-40d4463846e6)
 
   As we can see, our IP address is `10.0.2.15`. Let's put it in the browser.
 
-  ![image6](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/de8c703d-a404-4cd2-aed8-b7ac117079a5)
-
+  ![Screenshot (193)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/564bfc2c-5499-442c-88ce-44a8af6eae91)
 
   The server is working.
 
