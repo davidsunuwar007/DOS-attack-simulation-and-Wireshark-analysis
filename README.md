@@ -192,7 +192,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
 
   We can also use the I/O graph in the statistics section of Wireshark for visual representation.
 
-  ![image15](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/e803c63e-3ec1-40c5-9dbf-b45cd53708d9)
+  ![Screenshot (207)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/d7e3ccf0-7770-4838-abf6-4669d6c5c180)
+
 
   As we can see, the traffic has increased from 0 to over 5000 packets per second in a very short period of time.
 
