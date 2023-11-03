@@ -1,6 +1,6 @@
 # Overview
 
-This is a home-based project. Here, I have simulated a simple TCP SYN flood DOS (Denial of Service) attack and analysed it using Wireshark. In a SYN flood attack, an attacker exploits the three-way handshake protocol used by TCP by sending an overwhelming number of SYN requests to the server. Meanwhile, Wireshark is an open-source network protocol analyser tool which helps professionals to capture, inspect and analyse real-time network traffic. The main purpose of this project is to learn how DOS attack works and to gain familiarity with Wireshark. I have created two virtual machines in Oracle VirtualBox. Ubuntu is the attacker’s machine and Kali Linux is the victim’s machine. Network packets are captured in the victim’s device with Wireshark.
+This is a home-based project. Here, I have simulated a simple TCP SYN flood DOS (Denial of Service) attack and analysed it using Wireshark. In a SYN flood attack, an attacker exploits the three-way handshake protocol TCP uses by sending an overwhelming number of SYN requests to the server. Meanwhile, Wireshark is an open-source network protocol analyser tool that helps professionals capture, inspect and analyse real-time network traffic. The main purpose of this project is to learn how DOS attack works and to gain familiarity with Wireshark. I have created two virtual machines in Oracle VirtualBox. Ubuntu is the attacker’s machine, and Kali Linux is the victim’s machine. Network packets are captured in the victim’s device with Wireshark.
 
 # Technologies Used
 
@@ -13,7 +13,7 @@ This is a home-based project. Here, I have simulated a simple TCP SYN flood DOS 
 
 ## Step 1: Install VirtualBox.
 
-In this step, we go to the official Oracle VirtualBox website and install the VirtualBox. My host machine is Windows, so I downloaded the Windows version. You can select yours based on the machine you have. Once the .exe file is downloaded you can double-click it and go over a simple installation process.
+In this step, we go to the official Oracle VirtualBox website and install the VirtualBox. My host machine is Windows, so I downloaded the Windows version. You can select yours based on the machine you have. Once the .exe file is downloaded, you can double-click it and go over a simple installation process.
 
 ## Step 2: Install and set up virtual machines.
 
@@ -21,7 +21,7 @@ Now, we set up the virtual machines. We do that by downloading the ISO image fil
 * First, we click the New button. Name our virtual machine and select the correct version and ISO image. I used Ubuntu as the attacker’s machine, so I named it Attacker and 
 chose the Linux 64-bit version.
 
-* Second, we set the minimum RAM size of 2 GB, a Hard disk of 25 GB and 2 CPU processors. This is to make sure that the machine runs smoothly.
+* Second, we set the minimum RAM size of 2 GB, a Hard disk of 25 GB, and 2 CPU processors. This is to make sure that the machine runs smoothly.
   
 * Third, we click the start button and start the operating system installation process. This could take several minutes. During the process, we set our username, password and other requirements.
   
@@ -31,20 +31,20 @@ Your display should look similar to this.
 ## Step 3: Installing necessary components in the attacker’s and victim's virtual machine.
 
 ### Attacker (Ubuntu)
-* After the machine has started, we open the terminal. This can be done by pressing 
+* After the machine started, we opened the terminal. This can be done by pressing 
               ``Ctrl + Alt + t`` on your keyboard.
   
 * Now, the first thing we do is update the system. The command is
   ```
   sudo apt-get update
   ``` 
-  For the system to work smoothly, it is crucial to keep the system up to date. This command checks and installs if there are any available updates.
+  For the system to work smoothly, it is crucial to keep it up to date. This command checks and installs if there are any available updates.
   
 * After this, we install the hping3 tool. The command is 
   ```
   sudo apt install -y hping3
   ```
-  It is a powerful open-source network tool which allows users to send custom TCP, UDP and ICMP packets to target hosts and analyse network behaviour. We can check if it 
+  It is a powerful open-source network tool that allows users to send custom TCP, UDP, and ICMP packets to target hosts and analyse network behaviour. We can check if it 
   has been installed with this command.
    ```
    hping3 –version
@@ -63,24 +63,24 @@ Your display should look similar to this.
 
 - We go to the terminal by pressing the terminal icon in the top left corner. 
 
-- Just like in Ubuntu we update our system. 
+- Just like in Ubuntu, we update our system. 
 
   ```
   sudo apt-get update
   ```
 
-- Like in the attacker's machine we don't need Nmap and hping3 tool in the victim's device. Instead, we need to open our ports and we need Wireshark to analyse our network traffic. We will host the Apache server in port 80 and allow attackers to attack through port 80. We installed the Apache server with this command.
+- Like in the attacker's machine, we don't need Nmap and hping3 tool in the victim's device. Instead, we need to open our ports and we need Wireshark to analyse our network traffic. We will host the Apache server in port 80 and allow attackers to attack through port 80. We installed the Apache server with this command.
 ```
 sudo apt install apache2
 ```
-Once it's been installed you can start it with this command.
+Once it's been installed, you can start it with this command.
 ```
 sudo systemctl start apache2
 ```
 This hosts the Apache server in port 80. We can visit the server by typing our IP address into the web browser.
 
 
-- We can see the IP address of our machine with this command.
+- We can see our machine's IP address with this command.
 ```
 ifconfig
 ```
@@ -88,7 +88,7 @@ ifconfig
 As we can see, our IP address is xxxxxxxxxxxxxx. Let's put it in the browser.
 The server is working.
 
-- Wireshark comes auto-installed in Kali Linux so we don't have to install it.
+- Wireshark comes auto-installed in Kali Linux, so we don't have to install it.
 
 - Since everything we need has been installed, let's turn off our machines and go to our VirtualBox. Going to Settings and clicking the Network button, we should change our Network adapter to a Host-only Adapter. This isolates our virtual machines from the internet and makes it safe to simulate an attack.
 
@@ -102,7 +102,7 @@ The server is working.
   ```
   ifconfig
   ```
-As we can see the Attacker's IP address is ``192.168.191.6`` and the Victim's IP address is ``192.168.191.5``, we can note it somewhere. We need it in further steps.
+As we can see, the Attacker's IP address is ``192.168.191.6``, and the Victim's IP address is ``192.168.191.5``. We can note it somewhere.
   > We see the IP address for Victim has changed. This is because we changed our Network adapter.
 
 - Now, let's ping each other to see if the connection has been established. The command is given below.
@@ -114,9 +114,9 @@ ping 192.168.191.6
 ```
 ping 192.168.191.5
 ```
-As we can see the connection has established. Let's end the ping request with ``Ctrl + Z``.
+As we can see, the connection has been established. Let's end the ping request with ``Ctrl + Z``.
 
-- Next, let's open Wireshark in our Victim machine and start capturing the network traffic. This command is
+- Next, let's open Wireshark in our Victim machine and capture the network traffic. This command is
 ```
 wireshark
 ```
@@ -126,9 +126,9 @@ This opens the Wireshark tool. After it's opened, press that blue button to star
   ```
   nmap 192.168.191.6
   ```
-  As we can see port 80 is open.
+  As we can see, port 80 is open.
 
-- As this is an HTTP port. Let's attack port 80 by flooding SYN packets. This means we send a huge amount of SYN packets to the Victim but do not complete the three-way handshake by not sending ACK packets. This will use the Victim's resources and eventually overwhelm it. The command is given below.
+- As this is an HTTP port. Let's attack port 80 by flooding SYN packets. This means we send many SYN packets to the Victim but do not complete the three-way handshake by not sending ACK packets. This will use the Victim's resources and eventually overwhelm it. The command is given below.
 ```
 hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.191.6
 ```
@@ -136,16 +136,16 @@ hping3 -c 15000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.191.6
 
 This will slow down the Victim server and eventually freeze or crash the machine. Before that happens, we go to Wireshark, stop the capture and save it for analysis later.
 
-- This way we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl + Z` on our keyboard.
+- This way, we successfully DOS attacked a machine with SYN flood. We can stop the attack by pressing `Ctrl + Z` on our keyboard.
 
 # Analysing using Wireshark.  
-We go to our Victim machine and open Wireshark. After that, we import the saved network traffic capture and open it. Now the network traffic that was captured during the attack is displayed.
+We went to our victim machine and opened Wireshark. After that, we import the saved network traffic capture and open it. Now, the network traffic that was captured during the attack is displayed.
 
 
-We can see above that there is a lot of incoming TCP traffic. As this is an unusual activity we want to study it. To filter the SYN packets without any acknowledgement among all the captures we use the following filter.
+We can see above that there is a lot of incoming TCP traffic. As this is an unusual activity, we want to study it. To filter the SYN packets without any acknowledgement among all the captures, we use the following filter.
 `tcp.flags.syn == 1 and tcp.flags.ack == 0
 `
-We can see a lot of SYN packets are coming in a very tiny time frame. Although they are coming from different IP sources, the destination port is 80 for all packets. They are also of identical length of 120 and window size 64. This clearly indicates a TCP SYN flood attack
+We can see a lot of SYN packets are coming in a very tiny time frame. Although they come from different IP sources, the destination port is 80 for all packets. They are also of identical length of 120 and window size 64. This clearly indicates a TCP SYN flood attack
 
 
 
