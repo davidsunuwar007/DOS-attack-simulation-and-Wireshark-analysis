@@ -184,7 +184,7 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
 
   `tcp.flags.syn == 1 and tcp.flags.ack == 0`
 
-  ![image14](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/30f4e5a9-1132-487e-ae78-1f90913b626f)
+  
 
   We can see a lot of SYN packets are coming in a very tiny time frame. Although they come from different IP sources, the destination port is 80 for all packets. They are 
   also of identical length of 0 and window size 512. This clearly indicates a TCP SYN flood attack.
