@@ -13,7 +13,7 @@ This is a home-based project. Here, I have simulated a simple TCP SYN flood DOS 
 
 ## Step 1: Install VirtualBox.
 
-In this step, we go to the official Oracle VirtualBox website and install the VirtualBox. My host machine is Windows, so I downloaded the Windows version. You can select yours based on the machine you have. Once the .exe file is downloaded, you can double-click it and go over a simple installation process.
+In this step, we go to the official Oracle VirtualBox website and install the VirtualBox. My host machine is Windows, so I downloaded the Windows version. You can select yours based on the machine you have. Once the .exe file is downloaded, double-click it and go over a simple installation process.
 
 ## Step 2: Install and set up virtual machines.
 
@@ -23,10 +23,13 @@ chose the Linux 64-bit version.
 
 * Second, we set the minimum RAM size of 2 GB, a Hard disk of 25 GB, and 2 CPU processors. This is to make sure that the machine runs smoothly.
   
-* Third, we click the start button and start the operating system installation process. This could take several minutes. During the process, we set our username, password and other requirements.
+* Third, we set our hostname, username, password and other requirements. After this, the machine starts, and the operating system installation process starts.
   
 * Fourth, we do the same steps for the victim’s machine. We name it Victim, choose the Kali Linux ISO file and select the Debian 64-bit version.
-Your display should look similar to this.
+  For Kali Linux, setting up a hostname, username, and password will only be available during the operating system installation process.
+
+  After setting up both of the machines, the VirtualBox looks like this.  
+![Screenshot (185)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/7f7d893d-f60a-4509-a760-2ce92b3a4aad)
 
 ## Step 3: Installing necessary components in the attacker’s and victim's virtual machine.
 
@@ -49,6 +52,9 @@ Your display should look similar to this.
    ```
    hping3 –version
    ```
+![Screenshot (189)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/52594fd7-d88a-439b-a59c-1628b5f02c31)
+
+   
 * We also install Nmap. It is a network scanning tool. It helps users see the open ports of a targeted machine. It can be installed with this command.
    ```
    sudo apt-get install nmap
@@ -58,6 +64,9 @@ Your display should look similar to this.
    nmap --version
    ```
   This displays the name and version of the tool.
+
+  ![Screenshot (190)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/a112214c-9cc6-4453-af68-df5ebb92989f)
+
 
 ### Victim (Kali Linux) 
 
