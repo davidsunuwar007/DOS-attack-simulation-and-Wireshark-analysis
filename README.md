@@ -108,7 +108,9 @@ The server is working.
 
 - Wireshark comes auto-installed in Kali Linux, so we don't have to install it.
 
-- Since everything we need has been installed, let's turn off our machines and go to our VirtualBox. Going to Settings and clicking the Network button, we should change our Network adapter to a Host-only Adapter. This isolates our virtual machines from the internet and makes it safe to simulate an attack.
+- Since everything we need has been installed, let's turn off our machines and go to our VirtualBox. Going to Settings and clicking the Network button, we should change our Network adapter to a Host-only Adapter for both machines. This isolates our virtual machines from the internet and makes it safe to simulate an attack.
+![Screenshot (194)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/d5921905-30f5-45e9-b4c5-b91c01279fbc)
+
 
 # Attack and Capture
 - Let's open our virtual machines, go to the terminal and note our IP addresses. The command is given below.
@@ -120,19 +122,24 @@ The server is working.
   ```
   ifconfig
   ```
-As we can see, the Attacker's IP address is ``192.168.191.6``, and the Victim's IP address is ``192.168.191.5``. We can note it somewhere.
+
+![Screenshot (195)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/80a4a5e1-1de7-4dd0-ac6f-a8789bc76569)
+
+As we can see, the Attacker's IP address is ``192.168.191.7``, and the Victim's IP address is ``192.168.191.8``. We can note it somewhere.
   > We see the IP address for Victim has changed. This is because we changed our Network adapter.
 
 - Now, let's ping each other to see if the connection has been established. The command is given below.
 > For Attacker
 ```
-ping 192.168.191.6
+ping 192.168.191.8
 ```
 > For Victim(Kali Linux)
 ```
-ping 192.168.191.5
+ping 192.168.191.7
 ```
 As we can see, the connection has been established. Let's end the ping request with ``Ctrl + Z``.
+
+![Screenshot (196)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/96c851ac-abff-46dd-847e-5c009397eca6)
 
 - Next, let's open Wireshark in our Victim machine and capture the network traffic. This command is
 ```
