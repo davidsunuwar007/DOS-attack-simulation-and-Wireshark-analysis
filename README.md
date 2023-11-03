@@ -28,7 +28,8 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
   For Kali Linux, setting up a hostname, username, and password will only be available during the operating system installation.
 
   After setting up both of the machines, the VirtualBox looks like this.  
-  ![image1](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/7f7d893d-f60a-4509-a760-2ce92b3a4aad)
+  
+![Screenshot (185)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/ba2e01be-90ba-4fae-985d-d6b74e92300d)
 
 ## Step 3: Installing necessary components in the attacker’s and victim's virtual machine.
 
