@@ -1,6 +1,6 @@
 # Overview
 
-This is a home-based project. Here, I have simulated a simple TCP SYN flood DOS (Denial of Service) attack and analysed it using Wireshark. In a SYN flood attack, an attacker exploits the three-way handshake protocol TCP uses by sending an overwhelming number of SYN requests to the server. Meanwhile, Wireshark is an open-source network protocol analyser tool that helps professionals capture, inspect and analyse real-time network traffic. The main purpose of this project is to learn how DOS attack works and to gain familiarity with Wireshark. I have created two virtual machines in Oracle VirtualBox. Ubuntu is the attacker’s machine, and Kali Linux is the victim’s machine. Network packets are captured in the victim’s device with Wireshark.
+This is a home-based project. Here, I have simulated a simple TCP SYN flood DOS (Denial of Service) attack and analysed it using Wireshark. In a SYN flood attack, an attacker exploits the three-way handshake protocol TCP uses by sending an overwhelming number of SYN requests to the server. Meanwhile, Wireshark is an open-source network protocol analyser tool that helps professionals capture, inspect and analyse real-time network traffic. The main purpose of this project is to learn how DOS attack works and to gain familiarity with Wireshark. I have created two virtual machines in Oracle VirtualBox. Ubuntu is the attacker’s machine, and Kali Linux is the victim’s. Network packets are captured in the victim’s device with Wireshark.
 
 # Technologies Used
 
@@ -23,10 +23,10 @@ chose the Linux 64-bit version.
 
 * Second, we set the minimum RAM size of 2 GB, a Hard disk of 25 GB, and 2 CPU processors. This is to make sure that the machine runs smoothly.
   
-* Third, we set our hostname, username, password and other requirements. After this, the machine starts, and the operating system installation process starts.
+* Third, we set our hostname, username, password and other requirements. After this, the machine starts, and the operating system installation starts.
   
 * Fourth, we do the same steps for the victim’s machine. We name it Victim, choose the Kali Linux ISO file and select the Debian 64-bit version.
-  For Kali Linux, setting up a hostname, username, and password will only be available during the operating system installation process.
+  For Kali Linux, setting up a hostname, username, and password will only be available during the operating system installation.
 
   After setting up both of the machines, the VirtualBox looks like this.  
 ![Screenshot (185)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/7f7d893d-f60a-4509-a760-2ce92b3a4aad)
