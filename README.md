@@ -177,14 +177,14 @@ We set up the virtual machines. We do that by downloading the ISO image files fo
   We went to our victim machine and opened Wireshark. After that, we import the saved network traffic capture and open it. Now, the network traffic that was captured 
   during the attack is displayed.
 
-  ![image13](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/9c9715aa-6f0e-4bb8-b2ab-0ae729f913fa)
+  ![Screenshot (204)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/7e75fad5-e435-441f-9ba6-9905d9abbaf9)
 
   We can see above that there is a lot of incoming TCP traffic. As this is an unusual activity, we want to study it. To filter the SYN packets without any acknowledgement 
   among all the captures, we use the following display filter.
 
   `tcp.flags.syn == 1 and tcp.flags.ack == 0`
-
   
+  ![Screenshot (205)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/9fc63619-487c-4fa1-b6b0-2be61471d3f9)
 
   We can see a lot of SYN packets are coming in a very tiny time frame. Although they come from different IP sources, the destination port is 80 for all packets. They are 
   also of identical length of 0 and window size 512. This clearly indicates a TCP SYN flood attack.
