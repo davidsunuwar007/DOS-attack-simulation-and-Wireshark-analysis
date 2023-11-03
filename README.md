@@ -88,13 +88,22 @@ sudo systemctl start apache2
 ```
 This hosts the Apache server in port 80. We can visit the server by typing our IP address into the web browser.
 
+![Screenshot (191)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/2dd410a8-cd1f-4bba-bae6-7a92f070c139)
+
+
 
 - We can see our machine's IP address with this command.
 ```
 ifconfig
 ```
 
-As we can see, our IP address is xxxxxxxxxxxxxx. Let's put it in the browser.
+![Screenshot (192)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/718f3a36-abb8-485c-a732-050b4232a30e)
+
+As we can see, our IP address is `10.0.2.15`. Let's put it in the browser.
+
+![Screenshot (193)](https://github.com/davidsunuwar007/DOS-attack-simulation-and-Wireshark-analysis/assets/148152961/de8c703d-a404-4cd2-aed8-b7ac117079a5)
+
+
 The server is working.
 
 - Wireshark comes auto-installed in Kali Linux, so we don't have to install it.
